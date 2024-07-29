@@ -76,23 +76,25 @@ int main() {
 
     libusb_device *keyboard = NULL;
     struct libusb_device_descriptor desc;
-    for (ssize_t i = 0; i < cnt; i++) {
-        libusb_get_device_descriptor(devs[i], &desc);
-        if (desc.idVendor == 0x046d && desc.idProduct == 0xc31c) { // Example VendorID and ProductID for a Logitech keyboard
+    
+    // code to check for specific keyboards connected
+    // for (ssize_t i = 0; i < cnt; i++) {
+    //     libusb_get_device_descriptor(devs[i], &desc);
+    //     if (desc.idVendor == 0x046d && desc.idProduct == 0xc31c) { // Example VendorID and ProductID for a Logitech keyboard
             
-            keyboard = devs[i];
-            break;
-        }
-        printf("vendor id: %d\n", desc.idVendor);
-        printf("product id: %d\n", desc.idProduct);
-    }
+    //         keyboard = devs[i];
+    //         break;
+    //     }
+    //     printf("vendor id: %d\n", desc.idVendor);
+    //     printf("product id: %d\n", desc.idProduct);
+    // }
 
-    if (keyboard == NULL) {
-        fprintf(stderr, "Keyboard not found\n");
-        libusb_free_device_list(devs, 1);
-        libusb_exit(ctx);
-        return 1;
-    }
+    // if (keyboard == NULL) {
+    //     fprintf(stderr, "Keyboard not found\n");
+    //     libusb_free_device_list(devs, 1);
+    //     libusb_exit(ctx);
+    //     return 1;
+    // }
 
     libusb_device_handle *handle;
     r = libusb_open(keyboard, &handle);
