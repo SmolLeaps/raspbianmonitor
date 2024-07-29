@@ -14,6 +14,42 @@ void print_key(uint8_t keycode) {
     }
 }
 
+void check_device(libusb_device *device) {
+
+    printf("\n ---entered check_device() --- \n");
+    struct libusb_device_descriptor desc;
+    int r = libusb_get_device_descriptor(device, &desc);
+    if (r < 0) {
+        fprintf(stderr, "Failed to get device descriptor: %s\n", libusb_error_name(r));
+        return;
+    }
+
+    if (desc.bDeviceClass == LIBUSB_CLASS_PER_INTERFACE) {
+        libusb_config_descriptor *config;
+        r = libusb_get_config_descriptor(device, 0, &config);
+        if (r < 0) {
+            fprintf(stderr, "Failed to get config descriptor: %s\n", libusb_error_name(r));
+            return;
+        }
+
+        const libusb_interface *inter;
+        const libusb_interface_descriptor *interdesc;
+        for (int i = 0; i < config->bNumInterfaces; i++) {
+            inter = &config->interface[i];
+            for (int j = 0; j < inter->num_altsetting; j++) {
+                interdesc = &inter->altsetting[j];
+                if (interdesc->bInterfaceClass == LIBUSB_CLASS_HID &&
+                    interdesc->bInterfaceSubClass == 1 && // Boot Interface Subclass
+                    interdesc->bInterfaceProtocol == 1) { // Keyboard
+                    printf("Keyboard found: VID=0x%04x, PID=0x%04x\n", desc.idVendor, desc.idProduct);
+                }
+            }
+        }
+
+        libusb_free_config_descriptor(config);
+    }
+}
+
 int main() {
     libusb_device **devs;
     libusb_context *ctx = NULL;
@@ -31,6 +67,11 @@ int main() {
         fprintf(stderr, "Get Device Error\n");
         libusb_exit(ctx);
         return 1;
+    }
+
+    //logic for calling check_device()
+       for (ssize_t i = 0; i < cnt; i++) {
+        check_device(devs[i]);
     }
 
     libusb_device *keyboard = NULL;
