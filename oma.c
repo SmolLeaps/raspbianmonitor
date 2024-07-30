@@ -97,7 +97,7 @@ int main() {
     // }
 
     libusb_device_handle *handle;
-    r = libusb_open(keyboard, &handle);
+    r = libusb_open(keyboard, *handle);
     if (r != 0) {
         fprintf(stderr, "Cannot open device\n");
         libusb_free_device_list(devs, 1);
