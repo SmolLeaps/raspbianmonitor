@@ -18,13 +18,16 @@ void check_device(libusb_device *device) {
 
     printf("\n ---entered check_device() --- \n");
     struct libusb_device_descriptor desc;
+    printf("breakpoint 9 | ");
     int r = libusb_get_device_descriptor(device, &desc);
     if (r < 0) {
+        printf("breakpoint 10 | ");
         fprintf(stderr, "Failed to get device descriptor: %s\n", libusb_error_name(r));
         return;
     }
 
     if (desc.bDeviceClass == LIBUSB_CLASS_PER_INTERFACE) {
+        printf("breakpoint 11 | ");
         libusb_config_descriptor *config;
         r = libusb_get_config_descriptor(device, 0, &config);
         if (r < 0) {
@@ -35,6 +38,7 @@ void check_device(libusb_device *device) {
         const libusb_interface *inter;
         const libusb_interface_descriptor *interdesc;
         for (int i = 0; i < config->bNumInterfaces; i++) {
+            printf("breakpoint 12 | ");
             inter = &config->interface[i];
             for (int j = 0; j < inter->num_altsetting; j++) {
                 interdesc = &inter->altsetting[j];
@@ -47,10 +51,12 @@ void check_device(libusb_device *device) {
         }
 
         libusb_free_config_descriptor(config);
+        printf("breakpoint 13 | ");
     }
 }
 
 int main() {
+    printf("init\n");
     libusb_device **devs;
     libusb_context *ctx = NULL;
     int r;
@@ -73,10 +79,11 @@ int main() {
        for (ssize_t i = 0; i < cnt; i++) {
         check_device(devs[i]);
     }
-
+    printf("breakpoint 12 | ");
     libusb_device *keyboard = NULL;
+    printf("breakpoint 13 | ");
     struct libusb_device_descriptor desc;
-    
+    printf("breakpoint 14");
     // code to check for specific keyboards connected
     // for (ssize_t i = 0; i < cnt; i++) {
     //     libusb_get_device_descriptor(devs[i], &desc);
@@ -97,40 +104,54 @@ int main() {
     // }
 
     libusb_device_handle *handle;
-    r = libusb_open(keyboard, &handle);
-    if (r != 0) {
-        fprintf(stderr, "Cannot open device\n");
-        libusb_free_device_list(devs, 1);
-        libusb_exit(ctx);
-        return 1;
-    }
+    // printf("breakpoint 15");
+    // r = libusb_open(keyboard, &handle);
+    // printf("breakpoint 16");
+    // if (r != 0) {
+    //     fprintf(stderr, "Cannot open device\n");
+    //     libusb_free_device_list(devs, 1);
+    //     libusb_exit(ctx);
+    //     return 1;
+    // }
 
-    libusb_free_device_list(devs, 1);
+    // libusb_free_device_list(devs, 1);
 
-    r = libusb_claim_interface(handle, 0);
-    if (r != 0) {
-        fprintf(stderr, "Cannot claim interface\n");
-        libusb_close(handle);
-        libusb_exit(ctx);
-        return 1;
-    }
+    // r = libusb_claim_interface(handle, 0);
+    // if (r != 0) {
+    //     fprintf(stderr, "Cannot claim interface\n");
+    //     libusb_close(handle);
+    //     libusb_exit(ctx);
+    //     return 1;
+    // }
 
     uint8_t data[8];
     int actual_length;
+    //while loop below is currently not executed by control flow
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 0);
+        printf("breakpoint 1 | ");
         if (r == 0 && actual_length > 0) {
+            printf("breakpoint 2  | ");
             for (int i = 2; i < actual_length; i++) {
+                printf("breakpoint 3 | ");
                 if (data[i] != 0) {
+                            printf("breakpoint 4 | ");
                     print_key(data[i]);
+                    
                 }
             }
         }
     }
-
+    printf("breakpoint 5");
     libusb_release_interface(handle, 0);
+    printf("breakpoint 6");
+
     libusb_close(handle);
+    printf("breakpoint 7");
+
     libusb_exit(ctx);
+    printf("breakpoint 8");
+
 
     return 0;
 }
