@@ -1,2 +1,19 @@
 # raspbianmonitor
 command line monitoring for primitive OS-level checks eg. network, temperature of CPU, etc 
+
+**connection**
+```
+ssh -p [dynamic port no on ngrok instance running on rpi] 0.tcp.ap.ngrok.io
+```
+
+**run code**
+```
+g++ oma.c `pkg-config --libs --cflags libusb-1.0`
+./a.out
+```
+
+**debug** 
+```
+gdb ./a.out
+run
+```
