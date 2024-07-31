@@ -11,6 +11,7 @@ ssh -p [dynamic port no on ngrok instance running on rpi] 0.tcp.ap.ngrok.io
 g++ oma.c `pkg-config --libs --cflags libusb-1.0`
 ./a.out
 ```
+**note:** `sudo ./a.out` if `LIBUSB_ERROR_ACCESS`
 
 **debug** 
 ```
