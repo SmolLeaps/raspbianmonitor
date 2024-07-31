@@ -86,7 +86,7 @@ int main() {
     // code to check for specific keyboards connected
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_get_device_descriptor(devs[i], &desc);
-        if (desc.idVendor == 0x4b42 && desc.idProduct == 0x1226) { // Example VendorID and ProductID for the found keyboard
+        if (desc.idVendor == 0x4b42 && desc.idProduct == 0x1226) { // TODO: receive dynamic values for the found keyboard from check_device()
             printf("breakpoint 3 | ");
             keyboard = devs[i];
             break;
