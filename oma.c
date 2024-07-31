@@ -113,6 +113,17 @@ int main() {
     }
     printf("breakpoint 7 | ");
     libusb_free_device_list(devs, 1);
+    // Detach the kernel driver if necessary
+    if (libusb_kernel_driver_active(handle, 0) == 1) {
+        printf("Kernel driver active. Detaching it.\n");
+        r = libusb_detach_kernel_driver(handle, 0);
+        if (r != 0) {
+            fprintf(stderr, "Cannot detach kernel driver: %s\n", libusb_error_name(r));
+            libusb_close(handle);
+            libusb_exit(ctx);
+            return 1;
+        }
+    }
     printf("breakpoint 8 | ");  
     r = libusb_claim_interface(handle, 0);
     if (r != 0) {
