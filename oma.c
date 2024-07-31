@@ -79,79 +79,72 @@ int main() {
        for (ssize_t i = 0; i < cnt; i++) {
         check_device(devs[i]);
     }
-    printf("breakpoint 12 | ");
+    printf("breakpoint 1 | ");
     libusb_device *keyboard = NULL;
-    printf("breakpoint 13 | ");
+    printf("breakpoint 2 | ");
     struct libusb_device_descriptor desc;
-    printf("breakpoint 14");
     // code to check for specific keyboards connected
-    // for (ssize_t i = 0; i < cnt; i++) {
-    //     libusb_get_device_descriptor(devs[i], &desc);
-    //     if (desc.idVendor == 0x046d && desc.idProduct == 0xc31c) { // Example VendorID and ProductID for a Logitech keyboard
-            
-    //         keyboard = devs[i];
-    //         break;
-    //     }
-    //     printf("vendor id: %d\n", desc.idVendor);
-    //     printf("product id: %d\n", desc.idProduct);
-    // }
+    for (ssize_t i = 0; i < cnt; i++) {
+        libusb_get_device_descriptor(devs[i], &desc);
+        if (desc.idVendor == 0x4b42 && desc.idProduct == 0x1226) { // Example VendorID and ProductID for the found keyboard
+            printf("breakpoint 3 | ");
+            keyboard = devs[i];
+            break;
+        }
+    }
 
-    // if (keyboard == NULL) {
-    //     fprintf(stderr, "Keyboard not found\n");
-    //     libusb_free_device_list(devs, 1);
-    //     libusb_exit(ctx);
-    //     return 1;
-    // }
+    if (keyboard == NULL) {
+        fprintf(stderr, "Keyboard not found\n");
+        libusb_free_device_list(devs, 1);
+        libusb_exit(ctx);
+        return 1;
+    }
 
+    printf("breakpoint 4 | ");
     libusb_device_handle *handle;
-    // printf("breakpoint 15");
-    // r = libusb_open(keyboard, &handle);
-    // printf("breakpoint 16");
-    // if (r != 0) {
-    //     fprintf(stderr, "Cannot open device\n");
-    //     libusb_free_device_list(devs, 1);
-    //     libusb_exit(ctx);
-    //     return 1;
-    // }
-
-    // libusb_free_device_list(devs, 1);
-
-    // r = libusb_claim_interface(handle, 0);
-    // if (r != 0) {
-    //     fprintf(stderr, "Cannot claim interface\n");
-    //     libusb_close(handle);
-    //     libusb_exit(ctx);
-    //     return 1;
-    // }
+    printf("breakpoint 5 | ");
+    r = libusb_open(keyboard, &handle);
+    printf("breakpoint 6 | ");
+    if (r != 0) {
+        fprintf(stderr, "Cannot open device: %s\n", libusb_error_name(r));
+        libusb_free_device_list(devs, 1);
+        libusb_exit(ctx);
+        return 1;
+    }
+    printf("breakpoint 7 | ");
+    libusb_free_device_list(devs, 1);
+    printf("breakpoint 8 | ");  
+    r = libusb_claim_interface(handle, 0);
+    if (r != 0) {
+        fprintf(stderr, "Cannot claim interface: %s\n", libusb_error_name(r));
+        libusb_close(handle);
+        libusb_exit(ctx);
+        return 1;
+    }
 
     uint8_t data[8];
     int actual_length;
-    //while loop below is currently not executed by control flow
+
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 0);
-        printf("breakpoint 1 | ");
+        printf("breakpoint 9 | ");
         if (r == 0 && actual_length > 0) {
-            printf("breakpoint 2  | ");
+            printf("breakpoint 10  | ");
             for (int i = 2; i < actual_length; i++) {
-                printf("breakpoint 3 | ");
+                printf("breakpoint 11 | ");
                 if (data[i] != 0) {
-                            printf("breakpoint 4 | ");
+                    printf("breakpoint 12 | ");
                     print_key(data[i]);
-                    
                 }
             }
+        } else if (r != LIBUSB_ERROR_TIMEOUT) {
+            fprintf(stderr, "Error in interrupt transfer: %s\n", libusb_error_name(r));
         }
     }
-    printf("breakpoint 5");
+
     libusb_release_interface(handle, 0);
-    printf("breakpoint 6");
-
     libusb_close(handle);
-    printf("breakpoint 7");
-
     libusb_exit(ctx);
-    printf("breakpoint 8");
-
 
     return 0;
 }
