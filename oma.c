@@ -53,6 +53,7 @@ void check_device(libusb_device *device) {
         libusb_free_config_descriptor(config);
         printf("breakpoint 13 | ");
     }
+        printf("\n --- exit check_device() --- \n");
 }
 
 int main() {
