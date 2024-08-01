@@ -47,6 +47,10 @@ void check_device(libusb_device *device) {
                     interdesc->bInterfaceProtocol == 1) { // Keyboard
                     printf("Keyboard found: VID=0x%04x, PID=0x%04x\n", desc.idVendor, desc.idProduct);
                 }
+                for (int k = 0; k < interdesc->bNumEndpoints; k++) {
+                    const libusb_endpoint_descriptor *epdesc = &interdesc->endpoint[k];
+                    printf("Endpoint address: 0x%02x\n", epdesc->bEndpointAddress);
+                }
             }
         }
 
