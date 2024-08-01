@@ -138,10 +138,10 @@ int main() {
     int actual_length;
 
     while (1) {
-        r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 0);
-        printf("breakpoint 9 | ", r);
-        if (r == 0 && actual_length > 0) {
-            printf("breakpoint 10  | ");
+        r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 5000);
+        printf("breakpoint 9 | %s ", r);
+        if (r == 0 && actual_length == sizeof(data)) {
+            printf("breakpoint 10  | data received \n");
             for (int i = 2; i < actual_length; i++) {
                 printf("breakpoint 11 | ");
                 if (data[i] != 0) {
@@ -151,6 +151,9 @@ int main() {
             }
         } else if (r != LIBUSB_ERROR_TIMEOUT) {
             fprintf(stderr, "Error in interrupt transfer: %s\n", libusb_error_name(r));
+        }
+        else {
+            fprintf(stderr, "Error receiving data: %s\n", libusb_error_name(r));
         }
     }
 
