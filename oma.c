@@ -18,16 +18,13 @@ void check_device(libusb_device *device) {
 
     printf("\n ---entered check_device() --- \n");
     struct libusb_device_descriptor desc;
-    printf("breakpoint 9 | ");
     int r = libusb_get_device_descriptor(device, &desc);
     if (r < 0) {
-        printf("breakpoint 10 | ");
         fprintf(stderr, "Failed to get device descriptor: %s\n", libusb_error_name(r));
         return;
     }
 
     if (desc.bDeviceClass == LIBUSB_CLASS_PER_INTERFACE) {
-        printf("breakpoint 11 | ");
         libusb_config_descriptor *config;
         r = libusb_get_config_descriptor(device, 0, &config);
         if (r < 0) {
@@ -38,7 +35,6 @@ void check_device(libusb_device *device) {
         const libusb_interface *inter;
         const libusb_interface_descriptor *interdesc;
         for (int i = 0; i < config->bNumInterfaces; i++) {
-            printf("breakpoint 12 | ");
             inter = &config->interface[i];
             for (int j = 0; j < inter->num_altsetting; j++) {
                 interdesc = &inter->altsetting[j];
@@ -55,7 +51,6 @@ void check_device(libusb_device *device) {
         }
 
         libusb_free_config_descriptor(config);
-        printf("breakpoint 13 | ");
     }
         printf("\n --- exit check_device() --- \n");
 }
