@@ -139,7 +139,10 @@ int main() {
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 5000);
         printf("breakpoint 9 | \n", r);
-        printf("variables in breakpoint 9: %s | %s", handle, data);
+        printf("variables in breakpoint 9: %s | %u \n", handle, data);
+        char str[20];  // Make sure the array is large enough to hold the number as a string
+        sprintf(str, "%u", handle); // Convert the unsigned int to a string
+        printf("The string representation of the unsigned integer is: %s\n", str);
         if (r == 0 && actual_length == sizeof(data)) {
             printf("breakpoint 10  | \n");
             for (int i = 2; i < actual_length; i++) {
