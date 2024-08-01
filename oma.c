@@ -140,6 +140,7 @@ int main() {
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 5000);
         printf("breakpoint 9 | ", r);
+        printf("variables in breakpoint 9: %s | %s", handle, data);
         if (r == 0 && actual_length == sizeof(data)) {
             printf("breakpoint 10  | ");
             for (int i = 2; i < actual_length; i++) {
