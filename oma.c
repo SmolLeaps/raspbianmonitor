@@ -139,6 +139,11 @@ int main() {
 
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 5000);
+        if (r == 0) {
+            printf("Successfully transferred %d bytes\n", actual_length);
+        } else {
+            printf("Error in transfer: %s\n", libusb_error_name(r));
+        }
         printf("breakpoint 9 | %s ", r);
         if (r == 0 && actual_length == sizeof(data)) {
             printf("breakpoint 10  | data received \n");
