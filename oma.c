@@ -79,15 +79,15 @@ int main() {
        for (ssize_t i = 0; i < cnt; i++) {
         check_device(devs[i]);
     }
-    printf("breakpoint 1 | ");
+    printf("breakpoint 1 | \n");
     libusb_device *keyboard = NULL;
-    printf("breakpoint 2 | ");
+    printf("breakpoint 2 | \n");
     struct libusb_device_descriptor desc;
     // code to check for specific keyboards connected
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_get_device_descriptor(devs[i], &desc);
         if (desc.idVendor == 0x4b42 && desc.idProduct == 0x1226) { // TODO: receive dynamic values for the found keyboard from check_device()
-            printf("breakpoint 3 | ");
+            printf("breakpoint 3 | \n");
             keyboard = devs[i];
             break;
         }
@@ -100,18 +100,18 @@ int main() {
         return 1;
     }
 
-    printf("breakpoint 4 | ");
+    printf("breakpoint 4 | \n");
     libusb_device_handle *handle;
-    printf("breakpoint 5 | ");
+    printf("breakpoint 5 | \n");
     r = libusb_open(keyboard, &handle);
-    printf("breakpoint 6 | ");
+    printf("breakpoint 6 | \n");
     if (r != 0) {
         fprintf(stderr, "Cannot open device: %s\n", libusb_error_name(r));
         libusb_free_device_list(devs, 1);
         libusb_exit(ctx);
         return 1;
     }
-    printf("breakpoint 7 | ");
+    printf("breakpoint 7 | \n");
     libusb_free_device_list(devs, 1);
     // Detach the kernel driver if necessary
     if (libusb_kernel_driver_active(handle, 0) == 1) {
@@ -124,7 +124,7 @@ int main() {
             return 1;
         }
     }
-    printf("breakpoint 8 | ");  
+    printf("breakpoint 8 | \n");  
     r = libusb_claim_interface(handle, 0);
     if (r != 0) {
         fprintf(stderr, "Cannot claim interface: %s\n", libusb_error_name(r));
@@ -138,14 +138,14 @@ int main() {
 
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 5000);
-        printf("breakpoint 9 | ", r);
+        printf("breakpoint 9 | \n", r);
         printf("variables in breakpoint 9: %s | %s", handle, data);
         if (r == 0 && actual_length == sizeof(data)) {
-            printf("breakpoint 10  | ");
+            printf("breakpoint 10  | \n");
             for (int i = 2; i < actual_length; i++) {
-                printf("breakpoint 11 | ");
+                printf("breakpoint 11 | \n");
                 if (data[i] != 0) {
-                    printf("breakpoint 12 | ");
+                    printf("breakpoint 12 | \n");
                     print_key(data[i]);
                 }
             }
