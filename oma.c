@@ -139,7 +139,7 @@ int main() {
 
     while (1) {
         r = libusb_interrupt_transfer(handle, 0x81, data, sizeof(data), &actual_length, 0);
-        printf("breakpoint 9 | ");
+        printf("breakpoint 9 | ", r);
         if (r == 0 && actual_length > 0) {
             printf("breakpoint 10  | ");
             for (int i = 2; i < actual_length; i++) {
