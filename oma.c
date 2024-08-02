@@ -5,11 +5,13 @@
 void print_key(uint8_t keycode) {
     // This is a simplified example; you may need to handle more keycodes and modifiers
     switch (keycode) {
+        // Letters A-Z
         case 4: printf("A\n"); break;
         case 5: printf("B\n"); break;
         case 6: printf("C\n"); break;
         case 7: printf("D\n"); break;
-        case 9: printf("E\n"); break;
+        case 8: printf("E\n"); break;
+        case 9: printf("F\n"); break;
         case 10: printf("G\n"); break;
         case 11: printf("H\n"); break;
         case 12: printf("I\n"); break;
@@ -30,6 +32,77 @@ void print_key(uint8_t keycode) {
         case 27: printf("X\n"); break;
         case 28: printf("Y\n"); break;
         case 29: printf("Z\n"); break;
+
+        // Digits 0-9
+        case 30: printf("1\n"); break;
+        case 31: printf("2\n"); break;
+        case 32: printf("3\n"); break;
+        case 33: printf("4\n"); break;
+        case 34: printf("5\n"); break;
+        case 35: printf("6\n"); break;
+        case 36: printf("7\n"); break;
+        case 37: printf("8\n"); break;
+        case 38: printf("9\n"); break;
+        case 39: printf("0\n"); break;
+
+        // Special characters
+        case 40: printf("Enter\n"); break;
+        case 41: printf("Escape\n"); break;
+        case 42: printf("Backspace\n"); break;
+        case 43: printf("Tab\n"); break;
+        case 44: printf("Space\n"); break;
+        case 45: printf("-\n"); break;
+        case 46: printf("=\n"); break;
+        case 47: printf("[\n"); break;
+        case 48: printf("]\n"); break;
+        case 49: printf("\\\n"); break;
+        case 50: printf("#\n"); break;
+        case 51: printf(";\n"); break;
+        case 52: printf("'\n"); break;
+        case 53: printf("`\n"); break;
+        case 54: printf(",\n"); break;
+        case 55: printf(".\n"); break;
+        case 56: printf("/\n"); break;
+
+        // Modifier keys
+        case 57: printf("Caps Lock\n"); break;
+        case 58: printf("F1\n"); break;
+        case 59: printf("F2\n"); break;
+        case 60: printf("F3\n"); break;
+        case 61: printf("F4\n"); break;
+        case 62: printf("F5\n"); break;
+        case 63: printf("F6\n"); break;
+        case 64: printf("F7\n"); break;
+        case 65: printf("F8\n"); break;
+        case 66: printf("F9\n"); break;
+        case 67: printf("F10\n"); break;
+        case 68: printf("F11\n"); break;
+        case 69: printf("F12\n"); break;
+        case 70: printf("Print Screen\n"); break;
+        case 71: printf("Scroll Lock\n"); break;
+        case 72: printf("Pause\n"); break;
+        case 73: printf("Insert\n"); break;
+        case 74: printf("Home\n"); break;
+        case 75: printf("Page Up\n"); break;
+        case 76: printf("Delete\n"); break;
+        case 77: printf("End\n"); break;
+        case 78: printf("Page Down\n"); break;
+        case 79: printf("Right Arrow\n"); break;
+        case 80: printf("Left Arrow\n"); break;
+        case 81: printf("Down Arrow\n"); break;
+        case 82: printf("Up Arrow\n"); break;
+
+        // Shift keys
+        case 225: printf("Left Shift\n"); break;
+        case 229: printf("Right Shift\n"); break;
+
+        // Control keys
+        case 224: printf("Left Control\n"); break;
+        case 228: printf("Right Control\n"); break;
+
+        // Alt keys
+        case 226: printf("Left Alt\n"); break;
+        case 230: printf("Right Alt\n"); break;
 
         // Add more keycodes as needed
         default: printf("Unknown keycode: %d\n", keycode);
