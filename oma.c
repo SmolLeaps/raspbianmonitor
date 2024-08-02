@@ -9,6 +9,28 @@ void print_key(uint8_t keycode) {
         case 5: printf("B\n"); break;
         case 6: printf("C\n"); break;
         case 7: printf("D\n"); break;
+        case 9: printf("E\n"); break;
+        case 10: printf("G\n"); break;
+        case 11: printf("H\n"); break;
+        case 12: printf("I\n"); break;
+        case 13: printf("J\n"); break;
+        case 14: printf("K\n"); break;
+        case 15: printf("L\n"); break;
+        case 16: printf("M\n"); break;
+        case 17: printf("N\n"); break;
+        case 18: printf("O\n"); break;
+        case 19: printf("P\n"); break;
+        case 20: printf("Q\n"); break;
+        case 21: printf("R\n"); break;
+        case 22: printf("S\n"); break;
+        case 23: printf("T\n"); break;
+        case 24: printf("U\n"); break;
+        case 25: printf("V\n"); break;
+        case 26: printf("W\n"); break;
+        case 27: printf("X\n"); break;
+        case 28: printf("Y\n"); break;
+        case 29: printf("Z\n"); break;
+
         // Add more keycodes as needed
         default: printf("Unknown keycode: %d\n", keycode);
     }
