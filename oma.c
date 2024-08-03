@@ -19,15 +19,32 @@ void print_key(uint8_t modifier, uint8_t keycode) {
     // This is a simplified example; you may need to handle more keycodes and modifiers
        if (ctrlPressed) {
         switch (keycode) {
-            case 6: printf("CTRL+C (Copy)\n"); break;
-            case 25: printf("CTRL+V (Paste)\n"); break;
-            case 4: printf("CTRL+A (Select All)\n"); break;
-            case 29: printf("CTRL+Z (Undo)\n"); break;
-            case 27: printf("CTRL+X (Cut)\n"); break;
-            case 22: printf("CTRL+S (Save)\n"); break;
-            case 18: printf("CTRL+O (Open)\n"); break;
-            case 19: printf("CTRL+P (Print)\n"); break;
-            case 21: printf("CTRL+R (Refresh)\n"); break;
+            case 4: printf("CTRL+A\n"); break;
+            case 5: printf("CTRL+B\n"); break;
+            case 6: printf("CTRL+C\n"); break;
+            case 7: printf("CTRL+D\n"); break;
+            case 8: printf("CTRL+E\n"); break;
+            case 9: printf("CTRL+F\n"); break;
+            case 10: printf("CTRL+G\n"); break;
+            case 11: printf("CTRL+H\n"); break;
+            case 12: printf("CTRL+I\n"); break;
+            case 13: printf("CTRL+J\n"); break;
+            case 14: printf("CTRL+K\n"); break;
+            case 15: printf("CTRL+L\n"); break;
+            case 16: printf("CTRL+M\n"); break;
+            case 17: printf("CTRL+N\n"); break;
+            case 18: printf("CTRL+O\n"); break;
+            case 19: printf("CTRL+P\n"); break;
+            case 20: printf("CTRL+Q\n"); break;
+            case 21: printf("CTRL+R\n"); break;
+            case 22: printf("CTRL+S\n"); break;
+            case 23: printf("CTRL+T\n"); break;
+            case 24: printf("CTRL+U\n"); break;
+            case 25: printf("CTRL+V\n"); break;
+            case 26: printf("CTRL+W\n"); break;
+            case 27: printf("CTRL+X\n"); break;
+            case 28: printf("CTRL+Y\n"); break;
+            case 29: printf("CTRL+Z\n"); break;
             default: printf("Invalid keycode with Ctrl\n");
         }
     } else if (shiftPressed) {
@@ -236,7 +253,7 @@ int main() {
     // code to check for specific keyboards connected
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_get_device_descriptor(devs[i], &desc);
-        if (desc.idVendor == 0x4b42 && desc.idProduct == 0x1226) { // TODO: receive dynamic values for the found keyboard from check_device()
+        if ((desc.idVendor == 0x1532 && desc.idProduct == 0x0243) ) { // TODO: receive dynamic values for the found keyboard from check_device()
             // printf("breakpoint 3 | \n");
             keyboard = devs[i];
             break;
