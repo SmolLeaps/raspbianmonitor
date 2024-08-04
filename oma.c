@@ -259,7 +259,7 @@ void print_key(uint8_t modifier, uint8_t keycode) {
             case 80: printf("Left Arrow\n"); break;
             case 81: printf("Down Arrow\n"); break;
             case 82: printf("Up Arrow\n"); break;
-            default: printf("Invalid keycode\n");
+            default: printf(" \n");
         }
     }
 }
