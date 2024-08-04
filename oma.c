@@ -15,9 +15,10 @@ void print_key(uint8_t modifier, uint8_t keycode) {
     int shiftPressed = (modifier & MOD_SHIFT_LEFT) || (modifier & MOD_SHIFT_RIGHT);
     int ctrlPressed = (modifier & MOD_CTRL_LEFT) || (modifier & MOD_CTRL_RIGHT);
     int altPressed = (modifier & MOD_ALT_LEFT) || (modifier & MOD_ALT_RIGHT);
+    int guiPressed = (modifier & MOD_GUI_LEFT) || (modifier & MOD_GUI_RIGHT);
 
     // This is a simplified example; you may need to handle more keycodes and modifiers
-       if (ctrlPressed) {
+    if (ctrlPressed) {
         switch (keycode) {
             case 4: printf("CTRL+A\n"); break;
             case 5: printf("CTRL+B\n"); break;
@@ -97,7 +98,89 @@ void print_key(uint8_t modifier, uint8_t keycode) {
             case 56: printf("?\n"); break;
             default: printf("Shift\n");
         }
-    } else {
+    } else if (guiPressed){
+        switch(keycode){
+            case 4: printf("GUI+a\n"); break;
+            case 5: printf("GUI+b\n"); break;
+            case 6: printf("GUI+c\n"); break;
+            case 7: printf("GUI+d\n"); break;
+            case 8: printf("GUI+e\n"); break;
+            case 9: printf("GUI+f\n"); break;
+            case 10: printf("GUI+g\n"); break;
+            case 11: printf("GUI+h\n"); break;
+            case 12: printf("GUI+i\n"); break;
+            case 13: printf("GUI+j\n"); break;
+            case 14: printf("GUI+k\n"); break;
+            case 15: printf("GUI+l\n"); break;
+            case 16: printf("GUI+m\n"); break;
+            case 17: printf("GUI+n\n"); break;
+            case 18: printf("GUI+o\n"); break;
+            case 19: printf("GUI+p\n"); break;
+            case 20: printf("GUI+q\n"); break;
+            case 21: printf("GUI+r\n"); break;
+            case 22: printf("GUI+s\n"); break;
+            case 23: printf("GUI+t\n"); break;
+            case 24: printf("GUI+u\n"); break;
+            case 25: printf("GUI+v\n"); break;
+            case 26: printf("GUI+w\n"); break;
+            case 27: printf("GUI+x\n"); break;
+            case 28: printf("GUI+y\n"); break;
+            case 29: printf("GUI+z\n"); break;
+            case 30: printf("GUI+1\n"); break;
+            case 31: printf("GUI+2\n"); break;
+            case 32: printf("GUI+3\n"); break;
+            case 33: printf("GUI+4\n"); break;
+            case 34: printf("GUI+5\n"); break;
+            case 35: printf("GUI+6\n"); break;
+            case 36: printf("GUI+7\n"); break;
+            case 37: printf("GUI+8\n"); break;
+            case 38: printf("GUI+9\n"); break;
+            case 39: printf("GUI+0\n"); break;
+            case 45: printf("GUI+-\n"); break;
+            case 46: printf("GUI+=\n"); break;
+            case 47: printf("GUI+[\n"); break;
+            case 48: printf("GUI+]\n"); break;
+            case 49: printf("GUI+\\\n"); break;
+            case 51: printf("GUI+;\n"); break;
+            case 52: printf("GUI+'\n"); break;
+            case 54: printf("GUI+,\n"); break;
+            case 55: printf("GUI+.\n"); break;
+            case 56: printf("GUI+/\n"); break;
+            case 40: printf("GUI+Enter\n"); break;
+            case 41: printf("GUI+Escape\n"); break;
+            case 42: printf("GUI+Backspace\n"); break;
+            case 43: printf("GUI+Tab\n"); break;
+            case 44: printf("GUI+Space\n"); break;
+            case 57: printf("GUI+Caps Lock\n"); break;
+            case 58: printf("GUI+F1\n"); break;
+            case 59: printf("GUI+F2\n"); break;
+            case 60: printf("GUI+F3\n"); break;
+            case 61: printf("GUI+F4\n"); break;
+            case 62: printf("GUI+F5\n"); break;
+            case 63: printf("GUI+F6\n"); break;
+            case 64: printf("GUI+F7\n"); break;
+            case 65: printf("GUI+F8\n"); break;
+            case 66: printf("GUI+F9\n"); break;
+            case 67: printf("GUI+F10\n"); break;
+            case 68: printf("GUI+F11\n"); break;
+            case 69: printf("GUI+F12\n"); break;
+            case 70: printf("GUI+Print Screen\n"); break;
+            case 71: printf("GUI+Scroll Lock\n"); break;
+            case 72: printf("GUI+Pause\n"); break;
+            case 73: printf("GUI+Insert\n"); break;
+            case 74: printf("GUI+Home\n"); break;
+            case 75: printf("GUI+Page Up\n"); break;
+            case 76: printf("GUI+Delete\n"); break;
+            case 77: printf("GUI+End\n"); break;
+            case 78: printf("GUI+Page Down\n"); break;
+            case 79: printf("GUI+Right Arrow\n"); break;
+            case 80: printf("GUI+Left Arrow\n"); break;
+            case 81: printf("GUI+Down Arrow\n"); break;
+            case 82: printf("GUI+Up Arrow\n"); break;
+            default: printf("GUI (CMD || WIN)\n");
+        }
+    }
+    else {
         switch (keycode) {
             case 4: printf("a\n"); break;
             case 5: printf("b\n"); break;
