@@ -18,3 +18,7 @@ g++ oma.c `pkg-config --libs --cflags libusb-1.0`
 gdb ./a.out
 run
 ```
+
+**dependencies**
+g++ (C compiler, preinstalled on Raspbian OS)
+`sudo apt-get install libusb (C library for writing drivers for USB devices)`
