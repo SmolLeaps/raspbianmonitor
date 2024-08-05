@@ -48,7 +48,89 @@ void print_key(uint8_t modifier, uint8_t keycode) {
             case 29: printf("CTRL+Z\n"); break;
             default: printf("Invalid keycode with Ctrl\n");
         }
-    } else if (shiftPressed) {
+    } else if (altPressed) {
+        switch(keycode) {
+            case 4: printf("ALT+a\n"); break;
+            case 5: printf("ALT+b\n"); break;
+            case 6: printf("ALT+c\n"); break;
+            case 7: printf("ALT+d\n"); break;
+            case 8: printf("ALT+e\n"); break;
+            case 9: printf("ALT+f\n"); break;
+            case 10: printf("ALT+g\n"); break;
+            case 11: printf("ALT+h\n"); break;
+            case 12: printf("ALT+i\n"); break;
+            case 13: printf("ALT+j\n"); break;
+            case 14: printf("ALT+k\n"); break;
+            case 15: printf("ALT+l\n"); break;
+            case 16: printf("ALT+m\n"); break;
+            case 17: printf("ALT+n\n"); break;
+            case 18: printf("ALT+o\n"); break;
+            case 19: printf("ALT+p\n"); break;
+            case 20: printf("ALT+q\n"); break;
+            case 21: printf("ALT+r\n"); break;
+            case 22: printf("ALT+s\n"); break;
+            case 23: printf("ALT+t\n"); break;
+            case 24: printf("ALT+u\n"); break;
+            case 25: printf("ALT+v\n"); break;
+            case 26: printf("ALT+w\n"); break;
+            case 27: printf("ALT+x\n"); break;
+            case 28: printf("ALT+y\n"); break;
+            case 29: printf("ALT+z\n"); break;
+            case 30: printf("ALT+1\n"); break;
+            case 31: printf("ALT+2\n"); break;
+            case 32: printf("ALT+3\n"); break;
+            case 33: printf("ALT+4\n"); break;
+            case 34: printf("ALT+5\n"); break;
+            case 35: printf("ALT+6\n"); break;
+            case 36: printf("ALT+7\n"); break;
+            case 37: printf("ALT+8\n"); break;
+            case 38: printf("ALT+9\n"); break;
+            case 39: printf("ALT+0\n"); break;
+            case 45: printf("ALT+-\n"); break;
+            case 46: printf("ALT+=\n"); break;
+            case 47: printf("ALT+[\n"); break;
+            case 48: printf("ALT+]\n"); break;
+            case 49: printf("ALT+\\\n"); break;
+            case 51: printf("ALT+;\n"); break;
+            case 52: printf("ALT+'\n"); break;
+            case 54: printf("ALT+,\n"); break;
+            case 55: printf("ALT+.\n"); break;
+            case 56: printf("ALT+/\n"); break;
+            case 40: printf("ALT+Enter\n"); break;
+            case 41: printf("ALT+Escape\n"); break;
+            case 42: printf("ALT+Backspace\n"); break;
+            case 43: printf("ALT+Tab\n"); break;
+            case 44: printf("ALT+Space\n"); break;
+            case 57: printf("ALT+Caps Lock\n"); break;
+            case 58: printf("ALT+F1\n"); break;
+            case 59: printf("ALT+F2\n"); break;
+            case 60: printf("ALT+F3\n"); break;
+            case 61: printf("ALT+F4\n"); break;
+            case 62: printf("ALT+F5\n"); break;
+            case 63: printf("ALT+F6\n"); break;
+            case 64: printf("ALT+F7\n"); break;
+            case 65: printf("ALT+F8\n"); break;
+            case 66: printf("ALT+F9\n"); break;
+            case 67: printf("ALT+F10\n"); break;
+            case 68: printf("ALT+F11\n"); break;
+            case 69: printf("ALT+F12\n"); break;
+            case 70: printf("ALT+Print Screen\n"); break;
+            case 71: printf("ALT+Scroll Lock\n"); break;
+            case 72: printf("ALT+Pause\n"); break;
+            case 73: printf("ALT+Insert\n"); break;
+            case 74: printf("ALT+Home\n"); break;
+            case 75: printf("ALT+Page Up\n"); break;
+            case 76: printf("ALT+Delete\n"); break;
+            case 77: printf("ALT+End\n"); break;
+            case 78: printf("ALT+Page Down\n"); break;
+            case 79: printf("ALT+Right Arrow\n"); break;
+            case 80: printf("ALT+Left Arrow\n"); break;
+            case 81: printf("ALT+Down Arrow\n"); break;
+            case 82: printf("ALT+Up Arrow\n"); break;
+            default: printf("ALT\n");
+        }
+    } 
+    else if (shiftPressed) {
         switch (keycode) {
             case 4: printf("A\n"); break;
             case 5: printf("B\n"); break;
