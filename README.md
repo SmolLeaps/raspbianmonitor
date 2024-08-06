@@ -38,7 +38,7 @@ see VID, PID and Keyboard Manufacturer Name
 ```
 lsusb
 ```
-bluetooth
+bluetooth pairing
 ```
 bluetoothctl
 power on
